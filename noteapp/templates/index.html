@@ -1,0 +1,61 @@
+{%include 'base.html' %}
+{% block content%}
+    
+<h1>Welcome</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-auto shadow p-0">
+            <div class="alert alert-info">
+                <h2>add a new note</h2>
+            </div>
+            <div class="p-4">
+                <form action="Add-to-note" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <hr>
+                <input type="submit" value="Add" class="btn btn-info">
+                </form>    
+    
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+            <div class="row">
+            
+                {% for post in NOTES %}
+                <div class="col-md-12">
+                    <div class="card border-primary mb-3">
+                      
+                        <div class="card-header">
+                            <h4 class="card-title" style="font-size: smaller;">{{post.title|slice:":10" }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container">
+                            <div  class="row">
+                            <a href= "#" class="col-md-6">
+                                <img style="height: 200px; width: 35%; display: block;" src="#" alt="Card image">
+                            </a>
+                            </div>
+                            <br>
+                            <h4 class="card-title" style="font-size: smaller;">{{post.title }}</h4>
+                            <br>
+
+                            <p class="card-text" style="font-size: smaller;">{{ post.description|slice:":50" }}</p>
+                            
+                            
+                                <a href="delete_notes/{{  post.id}}" class="ml-3" title="Delete">🗑️
+                            </div>
+                            <div class="btn btn-primary ml-3 my-3">Read more</div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+                
+            
+        </div>
+    </div> 
+</div>       
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{%include 'base.html' %}
+{% block content%}
+    <div class="container">
+        <div class="row">
+            <div  class="col-lg-4 shadow">
+                <h2> Enter your username and password</h2>
+
+               </div>
+               <div class="p-4">
+                <form action="login" method="POST">
+                   {% csrf_token %}
+                   {{form.as_p}}
+                   <input type="submit" value="Login" class="btn btn-info">
+                </form>
+               </div>
+            </div>
+    </div>
+{% endblock %}
